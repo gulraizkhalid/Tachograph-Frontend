@@ -1,0 +1,74 @@
+<div class="my-5">
+  <h2 class="text-center mb-5">Truck Drivers Record</h2>
+  <!-- <form [formGroup]="myForm">
+    <div class="row">
+      <div class="col-4">
+        <mat-form-field appearance="fill">
+          <mat-label>Select an option</mat-label>
+          <mat-select [(value)]="selectedOption">
+            <mat-option *ngFor="let record of records" value="{{ record.driverId }}">{{ record.firstName }} {{ record.lastName }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="col-4">
+        <mat-form-field>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Select Date"
+            formControlName="selectedDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-2 offset-2">
+        <button mat-button (click)="submitForm()">Search</button>
+      </div>
+    </div>
+  </form> -->
+
+  <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+    <div class="row">
+      <div class="col-3">
+        <mat-form-field appearance="fill">
+          <mat-label>Select an option</mat-label>
+          <mat-select
+            [(value)]="selectedOption"
+            formControlName="selectedOption"
+          >
+            <mat-option
+              *ngFor="let record of records"
+              value="{{ record.driverId }}"
+              >{{ record.firstName }} {{ record.lastName }}</mat-option
+            >
+          </mat-select>
+          <mat-error *ngIf="myForm.get('selectedOption')?.hasError('required')"
+            >Option is required</mat-error
+          >
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Select Date"
+            formControlName="selectedDate"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="col-2 offset-4">
+        <button mat-raised-button color="primary" type="submit">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
